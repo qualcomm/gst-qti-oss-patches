@@ -1,7 +1,7 @@
 **After repository creation:**
 - [ ] Update this `README.md`. Update the Project Name, description, and all sections. Remove this checklist.
 - [ ] If required, update `LICENSE.txt` and the License section with your project's approved license
-- [ ] Search this repo for "REPLACE-ME" and update all instances accordingly
+- [ ] Search this repo for gst-qti-oss-patches and update all instances accordingly
 - [ ] Update `CONTRIBUTING.md` as needed
 - [ ] Review the workflows in `.github/workflows`, updating as needed. See https://docs.github.com/en/actions for information on what these files do and how they work.
 - [ ] Review and update the suggested Issue and PR templates as needed in `.github/ISSUE_TEMPLATE` and `.github/PULL_REQUEST_TEMPLATE`
@@ -38,7 +38,7 @@ How to contact maintainers. E.g. GitHub Issues, GitHub Discussions could be indi
 
 * [Report an Issue on GitHub](../../issues)
 * [Open a Discussion on GitHub](../../discussions)
-* [E-mail us](mailto:REPLACE-ME@qti.qualcomm.com) for general questions
+* [E-mail us](mailto:girik@qti.qualcomm.com/ncheruku@qti.qualcomm.com) for general questions
 
 ## License
 
