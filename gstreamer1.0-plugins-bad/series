@@ -1,0 +1,3 @@
+0001-wayland-Add-support-for-NV12_Q08C-compressed-8-bit.patch
+0002-waylandsink-Release-pending-buffers-during-PAUSED-to.patch
+0003-waylandsink-support-gap-buffers.patch
