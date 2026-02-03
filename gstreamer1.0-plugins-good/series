@@ -1,0 +1,8 @@
+0001-v4l2-Add-support-for-V4L2_PIX_FMT_QC08C-format.patch
+0002-v4l2videoenc-Set-format-on-capture-queue-before-enco.patch
+0003-v4l2-Add-v4l2av1dec-stateful-decoder-support.patch
+0004-v4l2videodec-Prefer-colorimetry-from-acquired-caps.patch
+0005-v4l2object-providing-aligned-size-when-propose-alloc.patch
+0006-v4l2-Drop-empty-bytesused-0-buffers.patch
+0007-v4l2-Handle-GAP-buffer-in-encoder.patch
+0008-v4l2-Add-support-for-V4L2_PIX_FMT_QC10C-format.patch
