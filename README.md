@@ -8,7 +8,9 @@
 
 # Project Name
 
-*\<update with your project name and a short description\>*
+gst-qti-oss-patches
+
+It contains patch files for GStreamer opensource plugins, introducing enhancements, fixes and support for Qualcomm specific pixel formats.
 
 Project that does ... implemented in ... runs on Qualcomm® *\<processor\>*
 
