@@ -4,7 +4,7 @@ Date: Tue, 18 Mar 2025 11:04:21 +0800
 Subject: [PATCH] video: Add support for NV12_Q10LE32C (compressed 10-bit)
  format
 
-Upstream-Status: Inappropriate [Qualcomm specific]
+Upstream-Status: Denied [Same reason as 8-bit compressed format, https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/9712]
 
 Signed-off-by: Hui Liu <huliu@qti.qualcomm.com>
 ---

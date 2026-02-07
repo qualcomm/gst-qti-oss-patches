@@ -3,7 +3,7 @@ From: Pratik Pachange <ppachang@qti.qualcomm.com>
 Date: Fri, 14 Feb 2025 15:05:28 +0530
 Subject: [PATCH] video: Add support for NV12_Q08C (compressed 8-bit) format
 
-Upstream-Status: Inappropriate [Qualcomm specific]
+Upstream-Status: Denied [https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/9712]
 
 Signed-off-by: Pratik Pachange <ppachang@qti.qualcomm.com>
 ---
