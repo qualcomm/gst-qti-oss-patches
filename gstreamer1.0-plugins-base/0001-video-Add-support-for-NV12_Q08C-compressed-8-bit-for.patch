@@ -1,4 +1,4 @@
-From 6a8d943d4b33f44437ba6cf674a6292ebe50a8b7 Mon Sep 17 00:00:00 2001
+From d003d8ee5b951e93dbf634c30c28103a6c014b53 Mon Sep 17 00:00:00 2001
 From: Pratik Pachange <ppachang@qti.qualcomm.com>
 Date: Thu, 29 Jan 2026 13:07:23 +0530
 Subject: [PATCH 1/3] video: Add support for NV12_Q08C (compressed 8-bit)
@@ -13,8 +13,10 @@ Signed-off-by: Bala Sai Kosuri <bkosuri@qti.qualcomm.com>
  gst-libs/gst/video/video-info-dma.c |  1 +
  gst-libs/gst/video/video-info.c     | 32 +++++++++++++++++++++++++++++
  gst-libs/gst/video/video-scaler.c   |  1 +
- tests/check/libs/video.c            |  4 ++++
- 6 files changed, 70 insertions(+), 1 deletion(-)
+ tests/check/elements/videoconvert.c |  3 +++
+ tests/check/elements/videoscale.c   |  1 +
+ tests/check/libs/video.c            |  8 ++++++--
+ 8 files changed, 76 insertions(+), 3 deletions(-)
 
 diff --git a/gst-libs/gst/video/video-format.c b/gst-libs/gst/video/video-format.c
 index 4092cfc..d731997 100644
@@ -166,10 +168,47 @@ index 5fe6bcc..2c4d0e9 100644
        *bits = 8;
        *n_elems = 2;
        break;
+diff --git a/tests/check/elements/videoconvert.c b/tests/check/elements/videoconvert.c
+index 420564a..4668a9b 100644
+--- a/tests/check/elements/videoconvert.c
++++ b/tests/check/elements/videoconvert.c
+@@ -76,6 +76,9 @@ check_pad_template (GstPadTemplate * tmpl)
+     if (i == GST_VIDEO_FORMAT_DMA_DRM)
+       continue;
+ 
++    if (i == GST_VIDEO_FORMAT_NV12_Q08C)
++      continue;
++
+     if (!formats_supported[i]) {
+       g_error ("videoconvert doesn't support format '%s'",
+           gst_video_format_to_string ((GstVideoFormat) i));
+diff --git a/tests/check/elements/videoscale.c b/tests/check/elements/videoscale.c
+index b2297cb..5edca5a 100644
+--- a/tests/check/elements/videoscale.c
++++ b/tests/check/elements/videoscale.c
+@@ -122,6 +122,7 @@ check_pad_template (GstPadTemplate * tmpl)
+         case GST_VIDEO_FORMAT_DMA_DRM:
+         case GST_VIDEO_FORMAT_MT2110T:
+         case GST_VIDEO_FORMAT_MT2110R:
++        case GST_VIDEO_FORMAT_NV12_Q08C:
+           GST_LOG ("Ignoring lack of support for format %s", fmt_str);
+           break;
+         default:
 diff --git a/tests/check/libs/video.c b/tests/check/libs/video.c
-index aac6982..d727524 100644
+index aac6982..aa00c35 100644
 --- a/tests/check/libs/video.c
 +++ b/tests/check/libs/video.c
+@@ -389,8 +389,8 @@ GST_START_TEST (test_video_formats_all)
+     fail_if (gst_video_format_from_string (fmt_str) ==
+         GST_VIDEO_FORMAT_UNKNOWN);
+   }
+-  /* Take into account GST_VIDEO_FORMAT_ENCODED, UNKNOWN and DMA_DRM. */
+-  fail_unless_equals_int (num, GST_VIDEO_FORMAT_LAST - 3);
++  /* Take into account GST_VIDEO_FORMAT_ENCODED, UNKNOWN, DMA_DRM and NV12_Q08C */
++  fail_unless_equals_int (num, GST_VIDEO_FORMAT_LAST - 4);
+ 
+   gst_caps_unref (caps);
+ }
 @@ -2185,6 +2185,9 @@ GST_START_TEST (test_video_pack_unpack2)
      if (format == GST_VIDEO_FORMAT_DMA_DRM)
        continue;
