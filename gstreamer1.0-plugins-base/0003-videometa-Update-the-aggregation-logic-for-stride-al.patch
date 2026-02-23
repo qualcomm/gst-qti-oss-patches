@@ -1,4 +1,4 @@
-From 8a3e564be0badc5acac10c19cf904efdd07c2b2e Mon Sep 17 00:00:00 2001
+From 93eb41ce87ca28b4f3665c76477925f4883cf1d9 Mon Sep 17 00:00:00 2001
 From: Raja Ganapathi Busam <quic_rbusam@quicinc.com>
 Date: Thu, 13 Mar 2025 22:11:35 +0530
 Subject: [PATCH 3/3] videometa: Update the aggregation logic for stride align
