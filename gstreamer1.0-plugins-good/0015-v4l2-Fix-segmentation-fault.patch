@@ -1,0 +1,27 @@
+From 25569170399212b4d2fe7250c8c1ed4a01db897c Mon Sep 17 00:00:00 2001
+From: Pratik Pachange <ppachang@qti.qualcomm.com>
+Date: Fri, 28 Mar 2025 09:44:55 +0000
+Subject: [PATCH 15/18] v4l2: Fix segmentation fault
+
+Upstream-Status: Pending
+Signed-off-by: Pratik Pachange <ppachang@qti.qualcomm.com>
+---
+ sys/v4l2/gstv4l2object.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/sys/v4l2/gstv4l2object.c b/sys/v4l2/gstv4l2object.c
+index 1d4b991..170f6aa 100644
+--- a/sys/v4l2/gstv4l2object.c
++++ b/sys/v4l2/gstv4l2object.c
+@@ -2036,7 +2036,7 @@ gst_v4l2_object_get_caps_info (GstV4l2Object * v4l2object, GstCaps * caps,
+   } else if (g_str_equal (mimetype, "video/x-h264")) {
+     const gchar *stream_format =
+         gst_structure_get_string (structure, "stream-format");
+-    if (g_str_equal (stream_format, "avc"))
++    if (stream_format && g_str_equal (stream_format, "avc"))
+       fourcc = V4L2_PIX_FMT_H264_NO_SC;
+     else
+       fourcc = V4L2_PIX_FMT_H264;
+-- 
+2.34.1
+
