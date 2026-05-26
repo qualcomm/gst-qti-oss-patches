@@ -1,0 +1,45 @@
+From 2b77256633de350e57e6481e8129cd5b8ddc986f Mon Sep 17 00:00:00 2001
+From: Hou Qi <qi.hou@nxp.com>
+Date: Mon, 25 May 2026 06:36:18 +0000
+Subject: [PATCH 19/19] v4l2videodec: Fix assertion failure when acquiring drm
+ caps
+
+This is to fix assertion failure "assertion 'drm_info->drm_fourcc != DRM_FORMAT_INVALID' failed"
+when acquiring drm caps.
+
+Part-of: <https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/8533>
+
+Upstream-Status: Backport [https://gitlab.freedesktop.org/gstreamer/gstreamer/-/commit/7b61be6c431e8b41cc4f9951d7dd204e58231dc3]
+
+Signed-off-by: Kemal Rasim Sh <kshakir@qti.qualcomm.com>
+---
+ sys/v4l2/gstv4l2videodec.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/sys/v4l2/gstv4l2videodec.c b/sys/v4l2/gstv4l2videodec.c
+index 8a8d8d5..f7760ca 100644
+--- a/sys/v4l2/gstv4l2videodec.c
++++ b/sys/v4l2/gstv4l2videodec.c
+@@ -31,6 +31,7 @@
+ 
+ #include "gstv4l2object.h"
+ #include "gstv4l2videodec.h"
++#include "ext/drm_fourcc.h"
+ 
+ #include "gstv4l2h264codec.h"
+ #include "gstv4l2h265codec.h"
+@@ -447,7 +448,10 @@ gst_v4l2_video_dec_negotiate (GstVideoDecoder * decoder)
+   /* Create caps from the acquired format, removing the format fields */
+   fixation_caps = gst_caps_new_empty ();
+ 
+-  acquired_drm_caps = gst_video_info_dma_drm_to_caps (&info);
++  if (info.drm_fourcc == DRM_FORMAT_INVALID)
++    acquired_drm_caps = NULL;
++  else
++    acquired_drm_caps = gst_video_info_dma_drm_to_caps (&info);
+   if (acquired_drm_caps) {
+     GST_DEBUG_OBJECT (self, "Acquired DRM caps: %" GST_PTR_FORMAT,
+         acquired_drm_caps);
+-- 
+2.47.3
+
