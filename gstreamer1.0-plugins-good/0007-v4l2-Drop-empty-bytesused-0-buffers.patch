@@ -1,9 +1,9 @@
-From 7f4acf679da620fc73572f75e7b7ae06f118ad61 Mon Sep 17 00:00:00 2001
+From da71aeb7219fa15e14c0e7afceed3bdffe5b0645 Mon Sep 17 00:00:00 2001
 From: Pratik Pachange <ppachang@qti.qualcomm.com>
 Date: Fri, 28 Mar 2025 09:18:53 +0000
-Subject: [PATCH 11/18] v4l2: Drop empty (bytesused 0) buffers
+Subject: [PATCH 07/14] v4l2: Drop empty (bytesused 0) buffers
 
-Upstream-Status: Pending
+Upstream-Status: Inappropriate [upstream ticket <https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/4392>]
 
 Signed-off-by: Pratik Pachange <ppachang@qti.qualcomm.com>
 ---
@@ -11,7 +11,7 @@ Signed-off-by: Pratik Pachange <ppachang@qti.qualcomm.com>
  1 file changed, 20 insertions(+)
 
 diff --git a/sys/v4l2/gstv4l2bufferpool.c b/sys/v4l2/gstv4l2bufferpool.c
-index 840e0f9..826b084 100644
+index 4e59743..4b1fc28 100644
 --- a/sys/v4l2/gstv4l2bufferpool.c
 +++ b/sys/v4l2/gstv4l2bufferpool.c
 @@ -1352,6 +1352,9 @@ gst_v4l2_buffer_pool_dqbuf (GstV4l2BufferPool * pool, GstBuffer ** buffer,

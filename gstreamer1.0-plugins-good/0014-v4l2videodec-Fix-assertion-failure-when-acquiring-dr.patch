@@ -1,7 +1,7 @@
-From 2b77256633de350e57e6481e8129cd5b8ddc986f Mon Sep 17 00:00:00 2001
+From e87e54b094113aaa751eef43990a837a8bc6ee79 Mon Sep 17 00:00:00 2001
 From: Hou Qi <qi.hou@nxp.com>
 Date: Mon, 25 May 2026 06:36:18 +0000
-Subject: [PATCH 19/19] v4l2videodec: Fix assertion failure when acquiring drm
+Subject: [PATCH 14/14] v4l2videodec: Fix assertion failure when acquiring drm
  caps
 
 This is to fix assertion failure "assertion 'drm_info->drm_fourcc != DRM_FORMAT_INVALID' failed"
@@ -17,7 +17,7 @@ Signed-off-by: Kemal Rasim Sh <kshakir@qti.qualcomm.com>
  1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/sys/v4l2/gstv4l2videodec.c b/sys/v4l2/gstv4l2videodec.c
-index 8a8d8d5..f7760ca 100644
+index df1db49..f68bf7a 100644
 --- a/sys/v4l2/gstv4l2videodec.c
 +++ b/sys/v4l2/gstv4l2videodec.c
 @@ -31,6 +31,7 @@
@@ -28,7 +28,7 @@ index 8a8d8d5..f7760ca 100644
  
  #include "gstv4l2h264codec.h"
  #include "gstv4l2h265codec.h"
-@@ -447,7 +448,10 @@ gst_v4l2_video_dec_negotiate (GstVideoDecoder * decoder)
+@@ -449,7 +450,10 @@ gst_v4l2_video_dec_negotiate (GstVideoDecoder * decoder)
    /* Create caps from the acquired format, removing the format fields */
    fixation_caps = gst_caps_new_empty ();
  
@@ -41,5 +41,5 @@ index 8a8d8d5..f7760ca 100644
      GST_DEBUG_OBJECT (self, "Acquired DRM caps: %" GST_PTR_FORMAT,
          acquired_drm_caps);
 -- 
-2.47.3
+2.34.1
 

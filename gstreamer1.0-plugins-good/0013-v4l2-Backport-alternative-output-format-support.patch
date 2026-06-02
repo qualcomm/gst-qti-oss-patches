@@ -1,25 +1,28 @@
-From 171f093e79c4086ef4b29a39caec89ff696bfa28 Mon Sep 17 00:00:00 2001
-From: Kemal Rasim Sh <kshakir@qti.qualcomm.com>
-Date: Mon, 8 Dec 2025 12:41:44 +0000
-Subject: [PATCH 18/18] v4l2: Backport alternative output format support
+From 4e7df779df525bb7dc7e2a960f140e17025c6741 Mon Sep 17 00:00:00 2001
+From: Haihua Hu <jared.hu@nxp.com>
+Date: Tue, 25 Mar 2025 17:22:41 +0900
+Subject: [PATCH] v4l2videodec: Fix alternative output format support
 
 Some decoder have the ability to output multiple formats.
-Restore this functionality by replacing acquired_caps with the new caps.
-Backport from: https://salsa.debian.org/gstreamer-team/gst-plugins-good1.0/
--/commit/323d9a3046d025da2ca8e43a5ea48ae0400c114c#c0a42aff914bd304990942c0548e70b44de4d1e2
+This has been supported for a while but stopped working
+after commit 77744c3d638. Restore this functionality
+by replacing acquired_caps with the new caps.
 
-Upstream-Status: Backport
+Fixes #4528
 
+Part-of: <https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/8674>
+
+Upstream-Status: Backport [https://gitlab.freedesktop.org/gstreamer/gstreamer/-/commit/4e7df779df525bb7dc7e2a960f140e17025c6741]
 Signed-off-by: Kemal Rasim Sh <kshakir@qti.qualcomm.com>
 ---
  sys/v4l2/gstv4l2videodec.c | 5 +++--
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/sys/v4l2/gstv4l2videodec.c b/sys/v4l2/gstv4l2videodec.c
-index 22bcf82..8a8d8d5 100644
+index 4934933..df1db49 100644
 --- a/sys/v4l2/gstv4l2videodec.c
 +++ b/sys/v4l2/gstv4l2videodec.c
-@@ -520,9 +520,10 @@ gst_v4l2_video_dec_negotiate (GstVideoDecoder * decoder)
+@@ -532,9 +532,10 @@ gst_v4l2_video_dec_negotiate (GstVideoDecoder * decoder)
    GST_DEBUG_OBJECT (self, "Chosen decoded caps: %" GST_PTR_FORMAT, caps);
  
    /* Try to set negotiated format, on success replace acquired format */

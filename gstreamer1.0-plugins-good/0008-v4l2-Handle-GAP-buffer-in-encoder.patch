@@ -1,19 +1,20 @@
-From da94a20c0aca4e80e21803a7cbded57367548a01 Mon Sep 17 00:00:00 2001
+From 1d37e22b663961ad36ffeaef0c132546c9ad3886 Mon Sep 17 00:00:00 2001
 From: Pratik Pachange <ppachang@qti.qualcomm.com>
 Date: Fri, 28 Mar 2025 09:30:39 +0000
-Subject: [PATCH 13/18] v4l2: Handle GAP buffer in encoder
+Subject: [PATCH 08/14] v4l2: Handle GAP buffer in encoder
 
-Upstream-Status: Pending
+Upstream-Status: Inappropriate [upstream ticket <https://gitlab.freedesktop.org/gstreamer/gstreamer/-/issues/4404>]
+
 Signed-off-by: Pratik Pachange <ppachang@qti.qualcomm.com>
 ---
  sys/v4l2/gstv4l2videoenc.c | 3 +++
  1 file changed, 3 insertions(+)
 
 diff --git a/sys/v4l2/gstv4l2videoenc.c b/sys/v4l2/gstv4l2videoenc.c
-index f831f96..b1929d0 100644
+index b6f54fb..5ce3251 100644
 --- a/sys/v4l2/gstv4l2videoenc.c
 +++ b/sys/v4l2/gstv4l2videoenc.c
-@@ -790,6 +790,9 @@ gst_v4l2_video_enc_handle_frame (GstVideoEncoder * encoder,
+@@ -805,6 +805,9 @@ gst_v4l2_video_enc_handle_frame (GstVideoEncoder * encoder,
    if (G_UNLIKELY (!g_atomic_int_get (&self->active)))
      goto flushing;
  
