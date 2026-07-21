@@ -1,0 +1,33 @@
+From 928c0e9f7b14dc48f972e0f054c27133ffe11216 Mon Sep 17 00:00:00 2001
+From: Pratik Pachange <ppachang@qti.qualcomm.com>
+Date: Thu, 20 Nov 2025 16:43:07 +0530
+Subject: [PATCH] v4l2allocator: Add KEEP_MAPPED flag to the allocated buffers
+
+This flag prevents the same buffer from being mapped twice
+
+Part-of: <https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/10153>
+
+Upstream-Status: Backport [https://gitlab.freedesktop.org/gstreamer/gstreamer/-/commit/726b2603b8c936298bb2a2ad37237259cf483233]
+
+Signed-off-by: Murali Krishna Bellamkonda <murabell@qti.qualcomm.com>
+---
+ sys/v4l2/gstv4l2allocator.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/sys/v4l2/gstv4l2allocator.c b/sys/v4l2/gstv4l2allocator.c
+index b64a932ae9..bece373713 100644
+--- a/sys/v4l2/gstv4l2allocator.c
++++ b/sys/v4l2/gstv4l2allocator.c
+@@ -934,7 +934,8 @@ gst_v4l2_allocator_alloc_dmabuf (GstV4l2Allocator * allocator,
+     mem = (GstV4l2Memory *) group->mem[i];
+ 
+     dma_mem = gst_fd_allocator_alloc (dmabuf_allocator, mem->dmafd,
+-        group->planes[i].length, GST_FD_MEMORY_FLAG_DONT_CLOSE);
++        group->planes[i].length,
++        GST_FD_MEMORY_FLAG_DONT_CLOSE | GST_FD_MEMORY_FLAG_KEEP_MAPPED);
+     gst_memory_resize (dma_mem, group->planes[i].data_offset,
+         group->planes[i].length - group->planes[i].data_offset);
+ 
+-- 
+2.34.1
+
