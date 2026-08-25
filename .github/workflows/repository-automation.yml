@@ -1,0 +1,14 @@
+name: Repository automation
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  no-op:
+    name: Reserved automation entry point
+    runs-on: ubuntu-latest
+    steps:
+      - name: No operation
+        run: ':'
