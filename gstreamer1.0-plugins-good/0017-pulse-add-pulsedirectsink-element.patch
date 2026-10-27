@@ -25,8 +25,8 @@ Signed-off-by: Bala Sai Kosuri <bkosuri@qti.qualcomm.com>
  ext/pulse/meson.build        |    1 +
  ext/pulse/plugin.c           |    1 +
  ext/pulse/pulsedirectsink.c  | 1348 ++++++++++++++++++++++++++++++++++
- ext/pulse/pulsedirectsink.h  |   66 ++
- 5 files changed, 1417 insertions(+)
+ ext/pulse/pulsedirectsink.h  |   68 ++
+ 5 files changed, 1419 insertions(+)
  create mode 100644 ext/pulse/pulsedirectsink.c
  create mode 100644 ext/pulse/pulsedirectsink.h
 
@@ -1425,10 +1425,12 @@ new file mode 100644
 index 0000000..e20e1e8
 --- /dev/null
 +++ b/ext/pulse/pulsedirectsink.h
-@@ -0,0 +1,66 @@
+@@ -0,0 +1,68 @@
 +/*
 + * GStreamer
 + * Copyright (C) 2019, 2021 Linux Foundation. All rights reserved.
++ *
++ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
 + *
 + * This library is free software; you can redistribute it and/or
 + * modify it under the terms of the GNU Lesser General Public
